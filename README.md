@@ -66,6 +66,51 @@ npm run dev
 The application will be available at:
 http://localhost:3000
 
+
+
+
+
+# Project Structure 
+
+rbac-config-tool/
+│
+├── src/                          # Main application source code
+│   │
+│   ├── app/                      # Next.js App Router (pages + APIs)
+│   │   │
+│   │   ├── api/                  # Backend API routes
+│   │   │   │
+│   │   │   ├── auth/             # Authentication related APIs
+│   │   │   │   ├── signup/       # User signup endpoint
+│   │   │   │   │   └── route.ts  # Creates user, hashes password, returns JWT
+│   │   │   │   └── login/        # User login endpoint
+│   │   │   │       └── route.ts  # Verifies user credentials and returns JWT
+│   │   │   │
+│   │   │   ├── permissions/      # Permission management APIs
+│   │   │   │   └── route.ts      # Create and list permissions
+│   │   │   │
+│   │   │   └── roles/            # Role management and RBAC logic
+│   │   │       ├── route.ts      # Create and list roles
+│   │   │       └── assign/
+│   │   │           └── route.ts  # Assign permissions to roles (core RBAC)
+│   │   │
+│   │   ├── layout.tsx            # Global layout for the Next.js app
+│   │   └── page.tsx              # Default home page (not core to backend)
+│   │
+│   └── lib/                      # Reusable helper logic
+│       ├── prisma.ts             # Initializes Prisma client for DB access
+│       └── auth.ts               # JWT helper functions (sign & verify token)
+│
+├── prisma/                       # Database-related configuration
+│   └── schema.prisma             # Database schema (tables & relations)
+│
+├── public/                       # Static files (icons, images)
+│
+├── README.md                     # Project documentation
+├── package.json                  # Project dependencies and scripts
+└── tsconfig.json                 # TypeScript configuration
+
+
 ---
 
 
